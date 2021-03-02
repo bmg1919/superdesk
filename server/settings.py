@@ -75,3 +75,20 @@ HIGHCHARTS_LICENSEE = 'Sourcefabric Ventures s.r.o.'
 HIGHCHARTS_LICENSEE_CONTACT = 'tech@sourcefabric.org'
 HIGHCHARTS_LICENSE_CUSTOMER_ID = '2'
 HIGHCHARTS_LICENSE_EXPIRY = 'Perpetual'
+
+DEFAULT_LANGUAGE = 'en-US'
+LANGUAGES = [
+    {'language': 'en-US', 'label': 'English', 'source': True, 'destination': True},
+    {'language': 'en-GB', 'label': 'English (GB)', 'source': True, 'destination': True},
+    {'language': 'fr', 'label': 'French', 'source': True, 'destination': True},
+    {'language': 'ar', 'label': 'Arabic', 'source': True, 'destination': True},
+    {'language': 'de', 'label': 'German', 'source': True, 'destination': True},
+    {'language': 'no', 'label': 'Norwegian', 'source': True, 'destination': True},
+    {'language': 'pt-PT', 'label': 'Portugese', 'source': True, 'destination': True},
+    {'language': 'pt-BR', 'label': 'Portugese (Brazil)', 'source': True, 'destination': True},
+    {'language': 'zh-Hans', 'label': 'Chinese (分类)', 'source': True, 'destination': True},
+    {'language': 'dk', 'label': 'Danish', 'source': True, 'destination': True},
+    {'language': 'es', 'label': 'Spanish', 'source': True, 'destination': True},
+    {'language': 'se', 'label': 'Swedish', 'source': True, 'destination': True},
+    {'language': 'cz', 'label': 'Czech', 'source': True, 'destination': True}
+]
