@@ -78,7 +78,7 @@ HIGHCHARTS_LICENSE_EXPIRY = 'Perpetual'
 
 DEFAULT_LANGUAGE = 'en-US'
 LANGUAGES = [
-    {'language': 'en-US', 'label': 'English', 'source': True, 'destination': True},
+    {'language': 'en-US', 'label': 'English (US)', 'source': True, 'destination': True},
     {'language': 'en-GB', 'label': 'English (GB)', 'source': True, 'destination': True},
     {'language': 'fr', 'label': 'French', 'source': True, 'destination': True},
     {'language': 'ar', 'label': 'Arabic', 'source': True, 'destination': True},
