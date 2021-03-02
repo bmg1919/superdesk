@@ -9,21 +9,8 @@
 # AUTHORS and LICENSE files distributed with this source code, or
 # at https://www.sourcefabric.org/superdesk/license
 
-import os
 from pathlib import Path
-from superdesk.default_settings import INSTALLED_APPS, strtobool
-
-
-def env(variable, fallback_value=None):
-    env_value = os.environ.get(variable, '')
-    if len(env_value) == 0:
-        return fallback_value
-    else:
-        if env_value == "__EMPTY__":
-            return ''
-        else:
-            return env_value
-
+from superdesk.default_settings import INSTALLED_APPS, strtobool, env
 
 ABS_PATH = str(Path(__file__).resolve().parent)
 
@@ -35,7 +22,7 @@ INSTALLED_APPS.extend([
     'apps.languages',
     'planning',
     'analytics',
-    'superdesk.macros.imperial'
+    'superdesk.macros.imperial',
 ])
 
 RENDITIONS = {
@@ -66,8 +53,10 @@ SECRET_KEY = env('SECRET_KEY', '')
 ANALYTICS_ENABLE_SCHEDULED_REPORTS = strtobool(
     env('ANALYTICS_ENABLE_SCHEDULED_REPORTS', 'true')
 )
+
+MACROS_MODULE = env('MACROS_MODULE', 'macros')
+
 HIGHCHARTS_SERVER_HOST = env('HIGHCHARTS_SERVER_HOST', 'localhost')
-HIGHCHARTS_SERVER_PORT = env('HIGHCHARTS_SERVER_PORT', '6060')
 HIGHCHARTS_SERVER_PORT = env('HIGHCHARTS_SERVER_PORT', '6060')
 HIGHCHARTS_LICENSE_ID = env('HIGHCHARTS_LICENSE_ID', '')
 HIGHCHARTS_LICENSE_TYPE = 'OEM'
@@ -92,3 +81,93 @@ LANGUAGES = [
     {'language': 'se', 'label': 'Swedish', 'source': True, 'destination': True},
     {'language': 'cz', 'label': 'Czech', 'source': True, 'destination': True}
 ]
+
+GENERATE_SHORT_GUID = True
+
+ARCHIVE_AUTOCOMPLETE = True
+ARCHIVE_AUTOCOMPLETE_DAYS = 30
+KEYWORDS_ADD_MISSING_ON_PUBLISH = True
+
+# publishing of associated and related items
+PUBLISH_ASSOCIATED_ITEMS = True
+
+FTP_TIMEOUT = int(env('FTP_TIMEOUT', 10))
+
+PLANNING_EVENT_TEMPLATES_ENABLED = True
+
+PLANNING_AUTO_ASSIGN_TO_WORKFLOW = True
+
+# special characters that are disallowed
+DISALLOWED_CHARACTERS = ['!', '$', '%', '&', '"', '(', ')', '*', '+', ',', '.', '/', ':', ';', '<', '=',
+                         '>', '?', '@', '[', ']', '\\', '^', '_', '`', '{', '|', '}', '~']
+
+# This value gets injected into NewsML 1.2 and G2 output documents.
+NEWSML_PROVIDER_ID = 'sourcefabric.org'
+ORGANIZATION_NAME = env('ORGANIZATION_NAME', 'Sourcefabric')
+ORGANIZATION_NAME_ABBREVIATION = env('ORGANIZATION_NAME_ABBREVIATION', 'SoFab')
+
+SCHEMA = {
+    'picture': {
+        'slugline': {'required': False},
+        'headline': {'required': False},
+        'description_text': {'required': True},
+        'byline': {'required': False},
+        'copyrightnotice': {'required': False},
+        'usageterms': {'required': False},
+        'ednote': {'required': False},
+    },
+    'video': {
+        'slugline': {'required': False},
+        'headline': {'required': False},
+        'description_text': {'required': True},
+        'byline': {'required': True},
+        'copyrightnotice': {'required': False},
+        'usageterms': {'required': False},
+        'ednote': {'required': False},
+    },
+}
+
+# editor for images, video, audio
+EDITOR = {
+    'picture': {
+        'headline': {'order': 1, 'sdWidth': 'full'},
+        'description_text': {'order': 2, 'sdWidth': 'full', 'textarea': True},
+        'byline': {'order': 3, 'displayOnMediaEditor': True},
+        'copyrightnotice': {'order': 4, 'displayOnMediaEditor': True},
+        'slugline': {'displayOnMediaEditor': True},
+        'ednote': {'displayOnMediaEditor': True},
+        'usageterms': {'order': 5, 'displayOnMediaEditor': True},
+    },
+    'video': {
+        'headline': {'order': 1, 'sdWidth': 'full'},
+        'description_text': {'order': 2, 'sdWidth': 'full', 'textarea': True},
+        'byline': {'order': 3, 'displayOnMediaEditor': True},
+        'copyrightnotice': {'order': 4, 'displayOnMediaEditor': True},
+        'slugline': {'displayOnMediaEditor': True},
+        'ednote': {'displayOnMediaEditor': True},
+        'usageterms': {'order': 5, 'displayOnMediaEditor': True},
+    },
+}
+
+SCHEMA['audio'] = SCHEMA['video']
+EDITOR['audio'] = EDITOR['video']
+
+
+# media required fields for upload
+VALIDATOR_MEDIA_METADATA = {
+    "slugline": {
+        "required": False,
+    },
+    "headline": {
+        "required": False,
+    },
+    "description_text": {
+        "required": True,
+    },
+    "byline": {
+        "required": False,
+    },
+    "copyrightnotice": {
+        "required": False,
+    },
+}
