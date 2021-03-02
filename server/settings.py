@@ -33,6 +33,9 @@ if init_data.exists():
 
 INSTALLED_APPS.extend([
     'apps.languages',
+    'planning',
+    'analytics',
+    'superdesk.macros.imperial'
 ])
 
 RENDITIONS = {
@@ -65,3 +68,10 @@ ANALYTICS_ENABLE_SCHEDULED_REPORTS = strtobool(
 )
 HIGHCHARTS_SERVER_HOST = env('HIGHCHARTS_SERVER_HOST', 'localhost')
 HIGHCHARTS_SERVER_PORT = env('HIGHCHARTS_SERVER_PORT', '6060')
+HIGHCHARTS_SERVER_PORT = env('HIGHCHARTS_SERVER_PORT', '6060')
+HIGHCHARTS_LICENSE_ID = env('HIGHCHARTS_LICENSE_ID', '')
+HIGHCHARTS_LICENSE_TYPE = 'OEM'
+HIGHCHARTS_LICENSEE = 'Sourcefabric Ventures s.r.o.'
+HIGHCHARTS_LICENSEE_CONTACT = 'tech@sourcefabric.org'
+HIGHCHARTS_LICENSE_CUSTOMER_ID = '2'
+HIGHCHARTS_LICENSE_EXPIRY = 'Perpetual'
