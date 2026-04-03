@@ -1,26 +1,25 @@
-FROM ubuntu:22.04
+FROM alpine:3.23.3
 
-ENV DEBIAN_FRONTEND=noninteractive 
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-python3 python3-dev python3-pip python3-venv git gcc curl \
+RUN apk add --no-cache \
+python3 python3-dev py3-pip py3-virtualenv git gcc curl \
 # lxml
 libxml2-dev libxslt-dev \
-# xmlsec
-pkg-config libxml2-dev libxmlsec1-dev libxmlsec1-openssl \
+#  libxmlsec1-dev libxmlsec1-openssl \
+xmlsec libxml2-dev pkgconf \
 # PIL
-libjpeg-dev zlib1g-dev \
-# magic
-libmagic-dev \
+zlib-dev jpeg-dev \
+# libmagic-dev \
+libmagic \
 # reportlab
-fonts-dejavu \
-# cleanup
-&& rm -rf /var/lib/apt/lists/* 
+font-dejavu
 
 # setup venv
 ENV VIRTUAL_ENV=/opt/venv
-RUN python3 -m venv "$VIRTUAL_ENV"
+RUN python3 -m virtualenv "$VIRTUAL_ENV"
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+# update venv
+RUN python3 -m pip install -U pip wheel setuptools
 
 # install server
 WORKDIR /opt/superdesk/

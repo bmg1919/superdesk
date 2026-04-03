@@ -1,5 +1,5 @@
 # BUILD
-FROM node:22 AS build
+FROM node:24.14.1-alpine3.23 AS build
 
 ARG SUPERDESK_URL
 ARG SUPERDESK_WS_URL
@@ -14,7 +14,8 @@ RUN npm install
 RUN npm run build
 
 # DEPLOY
-FROM nginx
+# FROM nginx:alpine3.23-slim
+FROM nginx:1-alpine-slim
 
 # setup the environment
 WORKDIR /opt/superdesk/client/dist
